@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>login</title>
+		<link href="../vendors/mui/css/mui.min.css" rel="stylesheet" />
+		<link href="../build/css/login.css" rel="stylesheet" />
+		<link href="../fonts/iconfont.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<!-- 背景 -->
+		<div class="oneCar_background">
+			<!-- 背景文字 -->
+			<div class="OneCar_bgText">
+				<p class="one" style="font-size:4.5rem;color: #333333;">
+					<span style="font-size: 6.25rem;">O</span>
+					<span style="font-size: 5.5rem;">n</span>
+					<span style="font-size: 4.5rem;">e</span>
+				</p>
+				<p class="car" style="font-size:5.5rem;color: #333333;">
+					<span style="font-size: 5.5rem;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<span style="font-size: 5.625rem;">C</span>
+					<span style="font-size: 3rem;">a</span>
+					<span style="font-size: 5.5rem;">r</span>
+				</p>
+			</div>
+		</div>
+		<!-- 头部导航 -->
+		<header class="mui-bar mui-bar-nav" style="background-color: rgba(255, 255, 255, 0.53) !important;">
+			<div class="mui-title" style="color: white;">Login</div>
+		</header>
+		<!-- 页面主体内容 -->
+		<div class="mui-content" style="background-color: rgba(247, 247, 247, 0) !important;">
+			<div class="mui-content-padded log-box">
+				<!-- 登录表格 -->
+				<form id="login-form" class="mui-input-group" style="background-color: rgba(247, 247, 247, 0.9) !important;">
+					<div class="mui-input-row">
+						<label>Account</label>
+						<input id="account" name="account" type="text" class="mui-input-clear mui-input" placeholder="请输入邮箱">
+					</div>
+					<div class="regIntruction_email" id="regIntruction_email">邮箱格式错误！</div>
+					<div class="mui-input-row">
+						<label>Password</label>
+						<input id="password" name="password" type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+					</div>
+				</form>
+				<!-- 自动登录功能 -->
+				<form class="mui-input-group" style="background-color: rgba(247, 247, 247, 0.9) !important;">
+					<ul class="mui-table-view mui-table-view-chevron" style="background-color: rgba(247, 247, 247, 0.53) !important;">
+						<li class="mui-table-view-cell">
+							Automatic login
+							<div id="autoLogin" class="mui-switch" style="background-color: rgba(247, 247, 247, 0.53) !important;">
+								<div class="mui-switch-handle"></div>
+							</div>
+						</li>
+					</ul>
+				</form>
+			</div>
+			<div class="mui-content-padded">
+				<button id="login" class="mui-btn mui-btn-block mui-btn-primary" onclick="checkForm()">Login</button>
+				<div class="link-area"><a id="reg" href="register.html">Register</a> <span class="spliter">|</span> <a id="forgetPassword" href="findPassword.html">Forget</a>
+				</div>
+			</div>
+		</div>
+		<script src="../build/js/common.js"></script>
+		<script src="../vendors/jquery-3.4.1.js"></script>
+		<script src="../vendors/mui/js/mui.min.js"></script>
+		<script src="../build/js/login.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</body>
+
+</html>
