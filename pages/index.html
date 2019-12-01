@@ -141,8 +141,40 @@
 								<div class="ID_name">
 									<h2>Missi</h2>
 								</div>
-								<span class=" mui-icon mui-icon-forward"></span>
+								<span class=" mui-icon mui-icon-forward Inf-next" onclick="InfGetout()"></span>
 							</div>
+						</div>
+                        <!--personal information-->
+						<div class="oneCar_informationTable">
+							<table class="inf-table">
+								<tr>
+									<td>userName</td>
+									<td>
+										<input type="text" name="userName" id="userName" value="Missi"
+											   readonly="readonly"/>
+									</td>
+								</tr>
+								<tr>
+									<td>passWord</td>
+									<td>
+										<input type="password" name="passWord" id="passWord" value="123456"
+											   readonly="readonly"/>
+									</td>
+								</tr>
+								<tr>
+									<td>email</td>
+									<td>
+										<input type="email" name="email" id="email" value="3535763658@qq.com"
+											   readonly="readonly"/>
+									</td>
+								</tr>
+							</table>
+							<button id="edit_inf" onclick="editInf()">Edit</button>
+							<button id="okInf" onclick="okInf()">OK</button>
+						</div>
+                        <!--personalThought-title-->
+						<div class="personalThought-title">
+							myself thought
 						</div>
                         <!--personalThought-->
 						<div class="personalThought">
@@ -221,61 +253,87 @@
 									<button class="commentButton">comment</button>
 								</div>
 							</div>
+							<div class="inf-padding oneCom_padded">
+								<div class="oneCom_pageTitle">
+									<div class="ID_image oneCom_image">
+										<img src="../images/person/people.png" />
+									</div>
+									<div class="ID_name oneCom_name">
+										<div>Missi</div>
+									</div>
+								</div>
+								<div class="oneCom_pageText">
+									<p>&nbsp;&nbsp;&nbsp;&nbsp;这是div模式选项卡中的第3个子页面，该页面展示一个常见的设置示例.</p>
+								</div>
+								<div class="oneCom_pageLike">
+							<span class="mui-icon iconfont icon-like" onclick="doLike(1)">
+								<span class="mui-badge">12</span>
+							</span>
+									<span class="mui-icon iconfont icon-news" onclick="dofocus()">
+								<span class="mui-badge" >10</span>
+							</span>
+								</div>
+								<div class="oneCom_pageComment">
+									<input type="text" name="comment" class="commentText">
+									<button class="commentButton">comment</button>
+								</div>
+							</div>
+							<div class="inf-padding oneCom_padded">
+								<div class="oneCom_pageTitle">
+									<div class="ID_image oneCom_image">
+										<img src="../images/person/people.png" />
+									</div>
+									<div class="ID_name oneCom_name">
+										<div>Missi</div>
+									</div>
+								</div>
+								<div class="oneCom_pageText">
+									<p>&nbsp;&nbsp;&nbsp;&nbsp;这是div模式选项卡中的第3个子页面，该页面展示一个常见的设置示例.</p>
+								</div>
+								<div class="oneCom_pageLike">
+							<span class="mui-icon iconfont icon-like" onclick="doLike(1)">
+								<span class="mui-badge">12</span>
+							</span>
+									<span class="mui-icon iconfont icon-news" onclick="dofocus()">
+								<span class="mui-badge" >10</span>
+							</span>
+								</div>
+								<div class="oneCom_pageComment">
+									<input type="text" name="comment" class="commentText">
+									<button class="commentButton">comment</button>
+								</div>
+							</div>
+							<div class="inf-padding oneCom_padded">
+								<div class="oneCom_pageTitle">
+									<div class="ID_image oneCom_image">
+										<img src="../images/person/people.png" />
+									</div>
+									<div class="ID_name oneCom_name">
+										<div>Missi</div>
+									</div>
+								</div>
+								<div class="oneCom_pageText">
+									<p>&nbsp;&nbsp;&nbsp;&nbsp;这是div模式选项卡中的第3个子页面，该页面展示一个常见的设置示例.</p>
+								</div>
+								<div class="oneCom_pageLike">
+							<span class="mui-icon iconfont icon-like" onclick="doLike(1)">
+								<span class="mui-badge">12</span>
+							</span>
+									<span class="mui-icon iconfont icon-news" onclick="dofocus()">
+								<span class="mui-badge" >10</span>
+							</span>
+								</div>
+								<div class="oneCom_pageComment">
+									<input type="text" name="comment" class="commentText">
+									<button class="commentButton">comment</button>
+								</div>
+							</div>
 						</div>
-						<!---->
-						<!-- image and ID -->
-						<!-- <div class="oneCar_ID">
-							<div class="ID_image">
-								<img src="../images/person/people.png" />
-							</div>
-							<div class="ID_name">
-								<h2>Missi</h2>
-							</div>
-						</div>
-						<div class="oneCar_informationTable">
-							<table class="inf-table">
-								<tr>
-									<td>userName</td>
-									<td>
-										<input type="text" name="userName" id="userName" value="Missi" readonly="readonly"/>
-									</td>
-								</tr>
-								<tr>
-									<td>passWord</td>
-									<td>
-										<input type="password" name="passWord" id="passWord" value="123456" readonly="readonly"/>
-									</td>
-								</tr>
-								<tr>
-									<td>email</td>
-									<td>
-										<input type="email" name="email" id="email" value="3535763658@qq.com" readonly="readonly"/>
-									</td>
-								</tr>
-							</table>
-							<button id="edit_inf" onclick="editInf()">Edit</button>
-							<button id="okInf" onclick="okInf()">OK</button>
-						</div>
-						<div class="oneCar_num">
-							<div class="numThink">
-								<p style="color: #000000;">think</p>
-								<p style="color: #000000;">20</p>
-							</div>
-							<div class="numLike">
-								<p style="color: #000000;">likes</p>
-								<p style="color: #000000;">30</p>
-							</div>
-						</div> -->
 					</div>
 				</div>
 			</div>
 		</div>
-	<!-- 	<script>
-			document.write('<script src="//' + (location.host || 'localhost').split(':')[0] + ':35929/livereload.js?snipver=1"></' + 'script>')
-		</script>
-		<script>
-			document.addEventListener('LiveReloadDisconnect', function() { setTimeout(function() { window.location.reload(); }, 500); })
-		</script> -->
+<!--		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=I4gkPPZPbGLGjBAztLx253V4encFR7Wx"></script>-->
 		<script src="../build/js/common.js"></script>
 		<script src="../vendors/jquery-3.4.1.js"></script>
 		<script src="../vendors/mui/js/mui.min.js"></script>

@@ -3,6 +3,7 @@ body {
 	width: 100%;
 	color: white;
 	font-size: 1rem;
+	touch-action: none;
 }
 
 /* 背景 */
@@ -18,7 +19,7 @@ body {
 	background: -o-linear-gradient(top, #3bf9cd 0%, #26c1f7 100%);
 	background: -ms-linear-gradient(top, #3bf9cd 0%, #26c1f7 100%);
 	/*兼容模式*/
-	background: linear-gradient(linear-gradient(to bottom, #3bf9cd 0%, #26c1f7 100%))
+	background: linear-gradient(to bottom, #3bf9cd 0%, #26c1f7 100%);
 }
 
 /* 背景文字 */
@@ -111,6 +112,7 @@ body {
 .ID_image img{
 	border-radius: 50%;
     border: 1px black solid;
+	width: 40px;
 }
 .oneCom_image{
 	width: 11%;
@@ -163,18 +165,20 @@ body {
 	padding-bottom: 18px
 }
 .personInf{
-	height: 80px;
+	height: 60px;
 	width: 100%;
-	position: fixed;
-	background-color: #FFDF25;
-	margin-bottom: 20px;
-	padding-top: 11px;
+	position: relative;
+	padding-top: 5px;
+	padding-left: 10px;
+	box-shadow: 0 1px 6px #ccc;
 }
 .informationImg{
 	width: 15%;
-	height: 74%;
+	height: 92%;
 	position: relative;
 	float: left;
+	flex-direction: column-reverse;
+	padding-left: 6px;
 }
 .informationText{
 	width: 83%;
@@ -182,42 +186,57 @@ body {
 	position: relative;
 	float: right;
 }
+.Inf-next{
+	line-height: 2;
+}
+.personalThought-title{
+	height: 48px;
+	width: 100%;
+	text-align: center;
+	line-height: 50px;
+	font-size: 18px;
+	color: white;
+	box-shadow: 0 1px 6px #ccc;
+	margin-bottom: 10px;
+	position: relative;
+}
 .personalThought{
 	width: 90%;
 	margin-left: 5%;
-	padding-top: 6.2rem;
 }
 .inf-padding{
 	margin: 0px 0px 9px 0px;
 }
-/*.oneCar_ID{*/
-/*	padding: 20px;*/
-/*	height: 4.1875rem;*/
-/*}*/
-/*.oneCar_informationTable{*/
-/*	padding: 20px;*/
-/*}*/
-/*.inf-table{*/
-/*    width: 90%;*/
-/*    eight: 11.875rem;*/
-/*}*/
-/*.inf-table tr{*/
-/*	height: 52px;*/
-/*}*/
-/*.inf-table tr td:last-child{*/
-/*	width: 67%;*/
-/*    line-height: 55px;*/
-/*}*/
-/*#userName,#passWord,#email{*/
-/*    height: 30px;*/
-/*	font-size: 15px;*/
-/*	background-color: rgba(247, 247, 247, 0);*/
-/*	border: rgba(247, 247, 247, 0);*/
-/*}*/
-/*.oneCar_informationTable button:last-child{*/
-/*	display: none;*/
-/*	float: right;*/
-/*}*/
+.oneCar_ID{
+	padding: 20px;
+	height: 4.1875rem;
+}
+.oneCar_informationTable{
+	padding: 20px;
+	display: none;
+	background-color: rgba(247, 247, 247, 0.9) !important;
+}
+.inf-table{
+    width: 90%;
+    eight: 11.875rem;
+}
+.inf-table tr{
+	height: 52px;
+}
+.inf-table tr td:last-child{
+	width: 67%;
+    line-height: 55px;
+}
+#userName,#passWord,#email{
+    height: 30px;
+	font-size: 15px;
+	background-color: rgba(247, 247, 247, 0);
+	border: rgba(247, 247, 247, 0);
+}
+.oneCar_informationTable button:last-child{
+	display: none;
+	float: right;
+}
 /*.oneCar_num{*/
 /*	display: flex;*/
 /*	text-align: center;*/

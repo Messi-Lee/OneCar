@@ -4,7 +4,18 @@
 window.onload = function(){
 	// getId();
 	// renderInf();
+	//定位问题
+	// var myCity = new BMap.LocalCity();
+	// myCity.get(MyPosition);
 }
+/*
+*解决定位问题
+ */
+// function MyPosition(result) {
+// 	$(".oneCar_adress").empty();
+// 	$(".oneCar_adress").append("<span class=\"mui-icon iconfont icon-location\" style=\"font-size: 1rem;\"></span>\n" +
+// 		"\t\t\t\t    <span>"+result.name+"</span>")
+// }
 /**
  * community
  * 实现点赞功能
@@ -42,6 +53,7 @@ window.onload = function(){
 // 	$(".commentText").focus();
 // }
 /**
+ * person
  * 获取id
  * split()
  */
@@ -74,50 +86,7 @@ window.onload = function(){
  * person
  * 渲染用户信息
  */
-function renderInf(){
-	$(".oneCar_informationBox").empty();
-	$(".oneCar_informationBox").append("<div class=\"oneCar_ID\">"+
-				"			<div class=\"ID_image\">"+
-				"				<img src=\"../images/person/people.png\" >"+
-				"			</div>"+
-				"			<div class=\"ID_name\">"+
-				"				<h2>Missi</h2>"+
-				"			</div>"+
-				"		</div>"+
-				"		<div class=\"oneCar_informationTable\">"+
-				"			<table class=\"inf-table\">"+
-				"				<tr>"+
-				"					<td>userName</td>"+
-				"					<td>"+
-				"						<input type=\"text\" name=\"userName\" id=\"userName\" value=\"Missi\" readonly=\"readonly\"/>"+
-				"					</td>"+
-				"				</tr>"+
-				"				<tr>"+
-				"					<td>passWord</td>"+
-				"					<td>"+
-				"						<input type=\"password\" name=\"passWord\" id=\"passWord\" value=\"123456\" readonly=\"readonly\"/>"+
-				"					</td>"+
-				"				</tr>"+
-				"				<tr>"+
-				"					<td>email</td>"+
-				"					<td>"+
-				"						<input type=\"email\" name=\"email\" id=\"email\" value=\"3535763658@qq.com\" readonly=\"readonly\"/>"+
-				"					</td>"+
-				"				</tr>"+
-				"			</table>"+
-				"			<button id=\"edit_inf\" onclick=\"editInf()\">Edit</button>"+
-				"			<button id=\"okInf\" onclick=\"okInf()\">OK</button>"+
-				"		</div>"+
-				"		<div class=\"oneCar_num\">"+
-				"			<div class=\"numThink\">"+
-				"				<p style=\"color: #000000;\">think</p>"+
-				"				<p style=\"color: #000000;\">20</p>"+
-				"			</div>"+
-				"			<div class=\"numLike\">"+
-				"				<p style=\"color: #000000;\">likes</p>"+
-				"				<p style=\"color: #000000;\">30</p>"+
-				"			</div>"+
-				"		</div>")
+function renderInf() {
 }
 
 
@@ -186,3 +155,58 @@ function okInf(){
 // 		
 // 	})
 // }
+/*
+*person
+* 个人信息展示弹出
+ */
+var inf_table_status = 0;//声明变量，个人信息的开关状态
+function InfGetout(){
+	var informationTable = $(".oneCar_informationTable")["0"];
+	var InfNext = $(".Inf-next")["0"];
+	if (informationTable.style.display == "none" || inf_table_status == 0){
+		informationTable.style.display = "block";
+		InfNext.style.transform = "rotate(90deg)";
+		inf_table_status = 1;
+	}else{
+		informationTable.style.display = "none";
+		InfNext.style.transform = "rotate(0deg)";
+		inf_table_status = 0
+	}
+	// console.log("个人信息的开关状态"+inf_table_status);
+}
+/*
+*person
+* 滚动监听
+* 监听实现myself thought固定
+ */
+window.onscroll = function() {
+	//为了保证兼容性，这里取两个值，哪个有值取哪一个
+	//scrollTop就是触发滚轮事件时滚轮的高度
+	var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+	var scrollOffest;//声明变量，向上滚动的距离
+	if (inf_table_status == 0){
+		scrollOffest = document.getElementsByClassName("personInf")["0"].scrollHeight;
+	}else if (inf_table_status == 1){
+		scrollOffest = document.getElementsByClassName("personInf")["0"].scrollHeight+ document.getElementsByClassName("oneCar_informationTable")["0"].scrollHeight;
+	};
+	// console.log("向上滚动的距离"+scrollOffest);
+	fixpersonalThought_title(scrollTop,scrollOffest);
+}
+function fixpersonalThought_title(scrollTop,scrollOffest) {
+	var personalThought_title = $(".personalThought-title")["0"].style;
+	if(scrollTop >= scrollOffest){
+		personalThought_title.position = "fixed";
+		personalThought_title.zIndex = "12";
+		personalThought_title.top = "40px";
+		personalThought_title.backgroundColor = "#38f2d2";
+		if (inf_table_status == 1){
+			InfGetout();
+		}
+	}else{
+		// console.log(scrollTop);
+		personalThought_title.position = "relative";
+		personalThought_title.zIndex = "";
+		personalThought_title.top = "";
+		personalThought_title.backgroundColor = "";
+	}
+}
