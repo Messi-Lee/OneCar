@@ -20,6 +20,7 @@ body {
 	background: -ms-linear-gradient(top, #3bf9cd 0%, #26c1f7 100%);
 	/*兼容模式*/
 	background: linear-gradient(to bottom, #3bf9cd 0%, #26c1f7 100%);
+	filter: blur(2px);
 }
 
 /* 背景文字 */
@@ -154,6 +155,27 @@ body {
     line-height: 8px;
     width: 27%;
 	background-color: #e3ed88;
+}
+.writeThought{
+	height: 60px;
+	width: 60px;
+	border: 1px #e3ed88 solid;
+	border-radius: 50%;
+	position: fixed;
+	z-index: 12;
+	top: 30%;
+	left: -32px;
+	color: black;
+	text-align: center;
+	padding-top: 18px;
+	font-family: snap ITC;
+	font-size: 30px;
+	transform: rotate(-45deg);
+	background-color: #30dbe3;
+}
+.writeThought:hover{
+    left: 0;
+    transform: rotate(0deg);
 }
 /* person */
 #oneCar-with-person{

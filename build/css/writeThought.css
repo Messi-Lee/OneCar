@@ -1,0 +1,73 @@
+body {
+    height: 100%;
+    width: 100%;
+    color: white;
+    font-size: 1rem;
+    touch-action: none;
+}
+/* 背景 */
+.oneCar_background {
+    position: fixed;
+    z-index: -100;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: -moz-linear-gradient(top, #3bf9cd 0%, #26c1f7 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3bf9cd), color-stop(100%, #26c1f7));
+    background: -webkit-linear-gradient(top, #3bf9cd 0%, #26c1f7 100%);
+    background: -o-linear-gradient(top, #3bf9cd 0%, #26c1f7 100%);
+    background: -ms-linear-gradient(top, #3bf9cd 0%, #26c1f7 100%);
+    /*兼容模式*/
+    background: linear-gradient(to bottom, #3bf9cd 0%, #26c1f7 100%);
+    filter: blur(2px);
+}
+/* 背景文字 */
+.OneCar_bgText {
+    position: absolute;
+    top: 13.75rem;
+    left: 4%;
+    width: 20.625rem;
+    height: 16.75rem;
+    color: #333333;
+    text-shadow: 0.1875rem 0.5rem 1.25rem rgba(0, 0, 0, 0.647058823529412);
+    /*字体阴影*/
+    transform: rotate(20deg);
+    /*背景文字旋转角度*/
+    opacity: 0.7;
+    /*背景文字的模糊度，也可称为毛玻璃效果*/
+    font-family: 'Axure Handwriting Bold', 'Axure Handwriting Regular', 'Axure Handwriting';
+    font-weight: 700;
+    font-style: normal;
+    align-items: center;
+}
+.one,
+.car {
+    height: 6.25rem;
+}
+/* 页面主体框架 */
+.oneCar_body {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+}
+/* 头部导航栏 */
+.oneCar_head {
+    padding: 0 1.875rem;
+    color: white;
+    background-color: #3bf9cd !important;
+    line-height: 2.75rem;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);;
+}
+/*帖子内容填写表单*/
+.thoughtBox{
+    width: 100%;
+    position: absolute;
+    top: 47px;
+}
+.thoughtForm{
+    position: relative;
+}
+.thoughtText{
+    background-color: rgba(247, 247, 247, 0.9);
+    height: 300px;
+}
