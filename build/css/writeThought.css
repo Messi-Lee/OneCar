@@ -76,7 +76,7 @@ body {
     width: 100%;
     height: 70px;
 }
-#imgPreview {
+.imgPreview {
     width: 82px;
     height: 75px;
     position: relative;
@@ -87,7 +87,7 @@ body {
     box-shadow: 0 1px 6px rgba(0,0,0,.4);
     display: none;
 }
-#cropedBigImg{
+.cropedBigImg{
     width: 100%;
     height: 100%;
     display: none;
@@ -95,7 +95,7 @@ body {
 .icon-close{
     position: relative;
     left: 60px;
-    top: -20px;
+    top: -77px;
 }
 .addImg_button{
     width: 82px;
@@ -109,6 +109,18 @@ body {
 }
 .icon-add{
     padding-left: 30%;
+}
+.grid-label{
+    margin-top: 10px;
+}
+#chooseImg{
+    width: 80px;
+    height: 75px;
+    position: relative;
+    top: -65px;
+    left: -8px;
+    z-index: 1;
+    opacity: 0;
 }
 .thoughtTag{
     width: 100%;
