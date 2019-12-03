@@ -71,3 +71,31 @@ body {
     background-color: rgba(247, 247, 247, 0.9);
     height: 300px;
 }
+/*上传图片*/
+.addImg{
+    width: 100%;
+}
+#img {
+}
+#upImg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+#upImg input {
+    width: 70px;
+    height: 60px;
+    opacity: 0;
+}
+#imgPreview {
+    width: 80px;
+    height: 60px;
+    position: relative;
+    left: 70px;
+    top: 0px;
+}
+#cropedBigImg{
+    width: 100%;
+    height: 100%;
+    display: none;
+}

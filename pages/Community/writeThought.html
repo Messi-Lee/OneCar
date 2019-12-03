@@ -41,7 +41,17 @@
     <div class="thoughtBox">
         <form class="thoughtForm">
             <textarea class="thoughtText"></textarea>
-            <input type="image">
+            <div class="addImg" id="img">
+                <div id="imgPreview">
+                    <img src="#" id="cropedBigImg" />
+                </div>
+                <div class="mui-icon mui-icon-plus"></div>
+                <!--阿里巴巴矢量图标，就是最后效果图中的“+”图标-->
+                <div class="aui-grid-label">添加图片</div>
+<!--                <div id="upImg">-->
+<!--                    <input type="file" name="file" id="chooseImage" />-->
+<!--                </div>-->
+            </div>
             <div class="thoughtTag">
                 <button class="addTag">添加标签</button>
             </div>
