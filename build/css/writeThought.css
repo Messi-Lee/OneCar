@@ -74,28 +74,71 @@ body {
 /*上传图片*/
 .addImg{
     width: 100%;
-}
-#img {
-}
-#upImg {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-}
-#upImg input {
-    width: 70px;
-    height: 60px;
-    opacity: 0;
+    height: 70px;
 }
 #imgPreview {
-    width: 80px;
-    height: 60px;
+    width: 82px;
+    height: 75px;
     position: relative;
-    left: 70px;
-    top: 0px;
+    float: left;
+    padding: 8px;
+    border: 1px rgba(255, 255, 255, 0.6) solid;
+    margin-left: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.4);
+    display: none;
 }
 #cropedBigImg{
     width: 100%;
     height: 100%;
     display: none;
+}
+.icon-close{
+    position: relative;
+    left: 60px;
+    top: -20px;
+}
+.addImg_button{
+    width: 82px;
+    height: 75px;
+    position: relative;
+    float: left;
+    padding: 8px;
+    border: 1px rgba(255, 255, 255, 0.6) solid;
+    left: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.4);
+}
+.icon-add{
+    padding-left: 30%;
+}
+.thoughtTag{
+    width: 100%;
+    height: 40px;
+    position: absolute;
+    line-height: 40px;
+    margin-top: 12px;
+}
+.Tag{
+    display: inline;
+    position: relative;
+    border: 1px white solid;
+    margin-left: 12px;
+    display: none;
+    box-shadow: 0 1px 6px rgba(0,0,0,.4);
+}
+.TagText{
+
+}
+.icon-closeempty{
+    font-size: 20px;
+}
+.addTag{
+    display: inline;
+    margin-left: 16px;
+    border: 1px white solid;
+    box-shadow: 0 1px 6px rgba(0,0,0,.4);
+}
+.chooseTagBox{
+    display: none;
+    position: absolute;
+    z-index: 15;
 }
