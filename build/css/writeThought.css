@@ -150,7 +150,17 @@ body {
     box-shadow: 0 1px 6px rgba(0,0,0,.4);
 }
 .chooseTagBox{
-    display: none;
+    /*display: none;*/
+    width: 90%;
+    height: 100%;
     position: absolute;
+    top: 6%;
+    left: 5%;
     z-index: 15;
+    background-color: rgba(47, 217, 225, 0.8);
+    box-shadow: 0 1px 6px rgba(0,0,0,.4);
+    border-radius: 2%;
+}
+.closeBoxButton{
+    float: right;
 }
