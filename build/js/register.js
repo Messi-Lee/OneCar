@@ -53,21 +53,27 @@ $("#email").blur(function(){
  * 注册功能实现
  */
 function registerSuc(regInfo){
-	axios({
+	$.ajax({
 		url:Url+"/v1/pub/user",
-		method:"post",
-		headers:{
-			"Content-Type":"application/json;"
+		type:"post",
+		data:{
+			username: regInfo.username,
+			password:regInfo.password,
+			email:regInfo.email,
+			code: regInfo.code
 		},
-		// params:regInfo,
-		data:JSON.stringify(regInfo),
-		responseType:"json"
-	}).then(function (res) {
-		console.log(res.data)
-	}).catch(function (res) {
-		console.error(res);
-	}).finally(() => {
-		console.log("complete");
+		async:true,//true 异步请求（默认）；false 同步请求
+		dataType:"json",
+		success:function (res/*,status,xhr*/) {
+			//请求成功之后的操作，res是成功后的数据
+			console.log(res);
+			console.log("成功");
+			// location.href = "../pages/login.html?id="+res;
+		},
+		error:function (res) {
+			//请求失败之后的操作，res是失败后的数据
+			console.log(res);
+		}
 	})
 }
 /**
