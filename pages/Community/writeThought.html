@@ -37,7 +37,7 @@
           location.href = '../index.html?divActive=3';
         };returnCom()"></span>
         <span class="mui-title oneCar_title" style="left: 6.25rem;right: 6.25rem;color: white;">publish</span>
-        <span class="mui-icon mui-icon-paperplane" style="float: right;"></span>
+        <span class="mui-icon mui-icon-paperplane" style="float: right;" onclick="checkForm()"></span>
     </header>
     <!--帖子内容填写表单-->
     <div class="thoughtBox">
@@ -63,16 +63,16 @@
             </div>
             <!--添加标签-->
             <div class="thoughtTag">
-                <div class="Tag">
-                    <span class="TagText">发动机</span>
-                    <span class="mui-icon mui-icon-closeempty icon-closeempty"></span>
+                <div class="TagBox">
+
                 </div>
-                <div class="addTag" type="button">添加标签</div>
+
+                <div class="addTag" type="button" onclick="tagBoxIn()">添加标签</div>
             </div>
             <!--标签弹框-->
             <div class="chooseTagBox">
                 <!-- 关闭按钮-->
-                <div class="closeBoxButton">
+                <div class="closeBoxButton" onclick="tagBoxOut()">
                     <div class="mui-icon mui-icon-closeempty icon-closeBox"></div>
                 </div>
                 <!--弹框内容-->
@@ -82,10 +82,22 @@
                     </div>
                     <div class="BoxTag">
                         <ul>
-                            <li id="1">底盘</li>
-                            <li id="2">发动机</li>
-                            <li id="3">车身</li>
-                            <li id="4">电气设备</li>
+                            <li>
+                                <span class="tag" id="3">车身</span>
+                                <div>---------></div>
+                            </li>
+                            <li>
+                                <span class="tag" id="4">电气设备</span>
+                                <div>---------></div>
+                            </li>
+                            <li>
+                                <div>---------></div>
+                                <span class="tag" id="1">底盘</span>
+                            </li>
+                            <li>
+                                <div>---------></div>
+                                <span class="tag" id="2">发动机</span>
+                            </li>
                         </ul>
                     </div>
                 </div>

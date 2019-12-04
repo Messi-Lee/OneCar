@@ -129,12 +129,16 @@ body {
     line-height: 40px;
     margin-top: 12px;
 }
+.TagBox{
+    display: inline;
+    height: 20px;
+    float: left;
+}
 .Tag{
     display: inline;
     position: relative;
     border: 1px white solid;
     margin-left: 12px;
-    display: none;
     box-shadow: 0 1px 6px rgba(0,0,0,.4);
 }
 .TagText{
@@ -151,7 +155,7 @@ body {
 }
 /*标签弹框*/
 .chooseTagBox{
-    /*display: none;*/
+    display: none;
     width: 90%;
     height: 100%;
     position: absolute;
@@ -165,6 +169,11 @@ body {
 .closeBoxButton{
     float: right;
 }
+/*弹框内容*/
+.BoxImg{
+    position: relative;
+    top: 65px;
+}
 .tag_Img{
     position: relative;
     width: 100%;
@@ -173,7 +182,60 @@ body {
     position: absolute;
     z-index: 18;
     top: 70px;
+    height: 82%;
+    width: 100%;
 }
 .BoxTag ul{
     list-style: none;
+    padding-left: 0;
+}
+.BoxTag ul li{
+    display: block;
+    width: fit-content;
+}
+.BoxTag ul li span:hover{
+    border: 1px white solid;
+    transform: scale(1.1,1.1);
+}
+.BoxTag ul li:nth-child(1),.BoxTag ul li:nth-child(3){
+    position: relative;
+    float: right;
+    right: 18px;
+}
+.BoxTag ul li:nth-child(1){
+    top: -23px;
+}
+.BoxTag ul li:nth-child(1) div{
+    transform: rotate(-42deg);
+    position: relative;
+    right: 55px;
+}
+.BoxTag ul li:nth-child(3){
+    top: 132px;
+}
+.BoxTag ul li:nth-child(3) div{
+    transform: rotate(28deg);
+    position: relative;
+    right: 55px;
+}
+.BoxTag ul li:nth-child(2),.BoxTag ul li:nth-child(4){
+    position: relative;
+    left: 18px;
+}
+.BoxTag ul li:nth-child(2){
+    top: 20px;
+
+}
+.BoxTag ul li:nth-child(2) div{
+    transform: rotate(-119deg);
+    position: relative;
+    top: 10px;
+}
+.BoxTag ul li:nth-child(4){
+    top: 207px;
+}
+.BoxTag ul li:nth-child(4) div{
+    transform: rotate(112deg);
+    position: relative;
+    top: -17px;
 }
