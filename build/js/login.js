@@ -4,13 +4,16 @@ var storage = window.localStorage;//声明localStorage
  * 自动写入
  */
 window.onload = function(){
-	var account = storage['local-account'];
-    var password = ['local-password'];
-	if(account){
-		$("#account").value = account;
-	    $("#password").value = password;
-		checkForm();
+	if (!typeof(localStorage.getItem("local-account"))=='undefined'){
+		var account = storage['local-account'];
+		var password = storage['local-password'];
+		if(account != ""){
+			$("#account").val(account) ;
+			$("#password").val(password);
+			checkForm();
+		}
 	}
+
 	
 }
 /**
@@ -46,9 +49,7 @@ function Login(formData){
         success:function (res/*,status,xhr*/) {
             //请求成功之后的操作，res是成功后的数据
 			console.log(res);
-			console.log(formData);
-			console.log("成功");
-			// location.href = "../pages/index.html?id="+res;
+			location.href = "../pages/index.html?account="+formData.account;
         },
         error:function (res) {
             //请求失败之后的操作，res是失败后的数据
@@ -97,9 +98,12 @@ $.fn.serializeJson = function(){
  * 自动登录功能实现
  */
 function autoLogin(account,password){
-	if($(".mui-switch").hasClass(".mui-active")){
+	if($("div").is(".mui-active")){
 		storage['local-account'] = account;
 		storage['local-password'] = password;
 		console.log('localStorage设置完毕');
+	}else{
+		localStorage.removeItem("local-account");
+		localStorage.removeItem("local-password");
 	}
 }

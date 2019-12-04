@@ -1,8 +1,11 @@
 /**
  * 页面自动执行的函数
  */
+var account;
 window.onload = function(){
-	// getId();
+	// 获取account
+	//  split()
+	account = location.href.split("=")[1];
 	// renderInf();
 	//定位问题
 	// var myCity = new BMap.LocalCity();
@@ -51,15 +54,6 @@ window.onload = function(){
  */
 // function dofocus(){
 // 	$(".commentText").focus();
-// }
-/**
- * person
- * 获取id
- * split()
- */
-// function getId(){
-// 	var id = location.href.split("?")[1];
-// 	getInf(id);
 // }
 /**
  * person
@@ -209,4 +203,17 @@ function fixpersonalThought_title(scrollTop,scrollOffest) {
 		personalThought_title.top = "";
 		personalThought_title.backgroundColor = "";
 	}
+}
+/**
+ *退出
+ * 退出登录的同时
+ * 如果有自动登录功能，则关闭
+ */
+function logOut(){
+	var account = localStorage['local-account'];
+	if(account != ""){
+		localStorage.removeItem("local-account");
+		localStorage.removeItem("local-password");
+	}
+	location.href = "login.html";
 }

@@ -4,12 +4,9 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title>carPlay</title>
+		<link rel="stylesheet" href="//at.alicdn.com/t/font_1487886_mrgqnk2uogs.css">
 		<link href="../vendors/mui/css/mui.min.css" rel="stylesheet" />
-		<link href="../fonts/iconfont.css" rel="stylesheet" />
 		<link href="../build/css/index.css" rel="stylesheet" />
-		<style>
-			
-		</style>
 	</head>
 	<body class="mui-android mui-android-8 mui-android-8-0">
 		<!-- 背景 -->
@@ -49,10 +46,10 @@
 					<span class="mui-icon iconfont icon-car"></span>
 					<span class="mui-tab-label">Car</span>
 				</a>
-				<a class="mui-tab-item" href="#oneCar-with-find">
-					<span class="mui-icon iconfont icon-find"><span class="mui-badge">9</span></span>
-					<span class="mui-tab-label">Find</span>
-				</a>
+<!--				<a class="mui-tab-item" href="#oneCar-with-find">-->
+<!--					<span class="mui-icon iconfont icon-find"><span class="mui-badge">9</span></span>-->
+<!--					<span class="mui-tab-label">Find</span>-->
+<!--				</a>-->
 				<a class="mui-tab-item" href="#oneCar-with-community">
 					<span class="mui-icon iconfont icon-communitygreen"></span>
 					<span class="mui-tab-label">Community</span>
@@ -79,20 +76,20 @@
 						<div class="mui-tab-item OneCar_where" style="background: #36A9CE;">
 							<div>where are I damaged</div>
 						</div>
-						<!-- Vehicle attribute recognition（车辆属性识别） -->
+						<!-- Vehicle detection（车辆检测） -->
 						<div class="mui-tab-item OneCar_what" style="background: #D0E17D;">
-							<div>what do I have</div>
+							<div>how many is here</div>
 						</div>
 						<!-- Vehicle segmentation（车辆分割） -->
-						<div class="mui-tab-item OneCar_can" style="background: #66CCFF;">
-							<div>I can be a picture</div>
-						</div>
+<!--						<div class="mui-tab-item OneCar_can" style="background: #66CCFF;">-->
+<!--							<div>I can be a picture</div>-->
+<!--						</div>-->
 					</div>
 				</div>
-				<!-- Find -->
-				<div id="oneCar-with-find" class="mui-control-content">
-					<div class="title">这是div模式选项卡中的第2个子页面，该页面展示一个常见的设置示例.</div>
-				</div>
+<!--				&lt;!&ndash; Find &ndash;&gt;-->
+<!--				<div id="oneCar-with-find" class="mui-control-content">-->
+<!--					<div class="title">这是div模式选项卡中的第2个子页面，该页面展示一个常见的设置示例.</div>-->
+<!--				</div>-->
 				<!-- Community -->
 				<div id="oneCar-with-community" class="mui-control-content">
 					<!-- 一个帖子 -->
@@ -222,6 +219,7 @@
 									<h2>Missi</h2>
 								</div>
 								<span class=" mui-icon mui-icon-forward Inf-next" onclick="InfGetout()"></span>
+								<span class=" mui-icon iconfont icon-logout" style="font-size: 21px;" onclick="logOut()"></span>
 							</div>
 						</div>
                         <!--personal information-->

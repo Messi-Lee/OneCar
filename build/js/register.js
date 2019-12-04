@@ -67,8 +67,10 @@ function registerSuc(regInfo){
 		success:function (res/*,status,xhr*/) {
 			//请求成功之后的操作，res是成功后的数据
 			console.log(res);
-			console.log("成功");
-			// location.href = "../pages/login.html?id="+res;
+			alert("5秒后进入登录页面.....")
+			setTimeout(function () {
+				location.href = "../pages/login.html?email="+regInfo.email+"&&password="+regInfo.password;
+			},5*1000);
 		},
 		error:function (res) {
 			//请求失败之后的操作，res是失败后的数据
