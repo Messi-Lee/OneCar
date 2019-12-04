@@ -149,6 +149,7 @@ body {
     border: 1px white solid;
     box-shadow: 0 1px 6px rgba(0,0,0,.4);
 }
+/*标签弹框*/
 .chooseTagBox{
     /*display: none;*/
     width: 90%;
@@ -163,4 +164,16 @@ body {
 }
 .closeBoxButton{
     float: right;
+}
+.tag_Img{
+    position: relative;
+    width: 100%;
+}
+.BoxTag{
+    position: absolute;
+    z-index: 18;
+    top: 70px;
+}
+.BoxTag ul{
+    list-style: none;
 }
