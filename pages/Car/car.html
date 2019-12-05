@@ -31,23 +31,26 @@
 </div>
 <div class="oneCar_body">
     <!--Vehicle type recognition（车型识别）-->
-    <div class="OneCar_main">
+    <div class="oneCar_main">
         <!-- 头部导航 -->
         <header class="mui-bar mui-bar-nav oneCar_head">
             <span class="mui-icon mui-icon-undo"></span>
             <span class="mui-title oneCar_title" style="left: 6.25rem;right: 6.25rem;color: white;">Vehicle-type-recognition</span>
         </header>
         <!--页面功能主题区-->
-        <div>
+        <div class="recognitionBox">
             <!--图片上传并展示-->
-            <div></div>
+            <div class="imgUpBox">
+                <div class="conshowed"></div>
+                <img src="../../images/community/car.png" class="imgUp">
+            </div>
              <!--返回信息展示-->
-            <div></div>
+            <div class="displayInf"></div>
              <!--上传功能实现按钮-->
-            <button>上传</button>
+            <button class="upImgButton">上传</button>
         </div>
     </div>
-
 </div>
+<script src="../../build/js/car.js"></script>
 </body>
 </html>

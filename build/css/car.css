@@ -49,6 +49,12 @@ body {
     position: absolute;
     z-index: 1;
     width: 100%;
+    height: 100%;
+}
+.oneCar_main{
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 /* 头部导航栏 */
 .oneCar_head {
@@ -57,4 +63,69 @@ body {
     background-color: #3bf9cd !important;
     line-height: 2.75rem;
     text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);;
+}
+/*页面功能主题区*/
+.recognitionBox{
+    position: relative;
+    width: 100%;
+    top: 43px;
+}
+/*图片上传并展示*/
+.imgUpBox{
+    position: relative;
+    width: 100%;
+    height: 250px;
+    background-color: rgba(247, 247, 247, 0.9) !important;
+    top: 13px;
+}
+.conshowed {
+    position:absolute;
+    width:0;
+    height:100%;
+    top:0;
+    left:0;
+    border-right: 1px black solid;
+    background-color: rgba(226, 226, 226, 0.5) !important;
+    animation:mymove 3s linear infinite;
+    -webkit-animation:mymove 3s linear infinite;
+    /*Safari and Chrome*/z-index:99
+}
+@keyframes mymove {
+    from {
+        width:0;
+    }
+    to {
+        width:100%;
+    }
+}@-webkit-keyframes mymove /*Safari and Chrome*/ {
+     from {
+         width:0;
+     }
+     to {
+         width:100%;
+     }
+ }
+ .imgUp{
+     height: 100%;
+ }
+/*返回信息展示*/
+.displayInf{
+    position: fixed;
+    width: 100%;
+    height: 250px;
+    background-color: rgba(247, 247, 247, 0.5) !important;
+    margin-top: 23px;
+    overflow: hidden;
+    display: none;
+}
+/*上传功能实现按钮*/
+.upImgButton{
+    width: 75%;
+    height: 40px;
+    left: 12%;
+    top: 52px;
+    border-radius: 5px;
+    background-color: #4545ef;
+    color: white;
+    font-size: 18px;
 }
