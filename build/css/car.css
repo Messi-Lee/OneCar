@@ -119,7 +119,7 @@ body {
     display: none;
 }
 /*上传功能实现按钮*/
-.upImgButton{
+.addImgButton{
     width: 75%;
     height: 40px;
     left: 12%;
@@ -128,4 +128,13 @@ body {
     background-color: #4545ef;
     color: white;
     font-size: 18px;
+}
+.addImg{
+    width: 75%;
+    height: 40px;
+    position: relative;
+    left: 12%;
+    top: 13px;
+    z-index: 1;
+    opacity: 0;
 }

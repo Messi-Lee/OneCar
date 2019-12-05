@@ -34,7 +34,9 @@
     <div class="oneCar_main">
         <!-- 头部导航 -->
         <header class="mui-bar mui-bar-nav oneCar_head">
-            <span class="mui-icon mui-icon-undo"></span>
+            <span class="mui-icon mui-icon-undo" onclick="function Reback() {
+                  location.href = '../index.html';
+                  };Reback()"></span>
             <span class="mui-title oneCar_title" style="left: 6.25rem;right: 6.25rem;color: white;">Vehicle-type-recognition</span>
         </header>
         <!--页面功能主题区-->
@@ -51,6 +53,7 @@
         </div>
     </div>
 </div>
+<script src="../../vendors/jquery-3.4.1.js"></script>
 <script src="../../build/js/car.js"></script>
 </body>
 </html>

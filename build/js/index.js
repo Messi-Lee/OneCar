@@ -20,6 +20,14 @@ window.onload = function(){
 // 		"\t\t\t\t    <span>"+result.name+"</span>")
 // }
 /**
+ * car
+ * 点击跳转页面
+ * 向页面传送值，确定其功能
+ */
+function recon_num(data) {
+	location.href = "Car/car.html?type="+data;
+}
+/**
  * community
  * 实现点赞功能
  */
@@ -205,7 +213,8 @@ function fixpersonalThought_title(scrollTop,scrollOffest) {
 	}
 }
 /**
- *退出
+ * person
+ * 退出
  * 退出登录的同时
  * 如果有自动登录功能，则关闭
  */
