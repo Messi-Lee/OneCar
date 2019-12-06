@@ -1,31 +1,59 @@
 /**
  * 页面自动执行的函数
  */
-var account;
+var userId;
+// var divActive;
 window.onload = function(){
 	// 获取account
 	//  split()
-	account = location.href.split("=")[1];
-	// renderInf();
+	userId = location.href.split("=")[1];
+	var name =  location.href.split("?")[1].split("=")[0];
+	if (name != "id"){
+		alert("请先登录!!5秒后进入登录页面...")
+		setTimeout(function () {
+			location.href = "login.html";
+		},5000)
+	}
+	getAllmessage();
+	getInf();
 	//定位问题
-	// var myCity = new BMap.LocalCity();
-	// myCity.get(MyPosition);
+	var myCity = new BMap.LocalCity();
+	myCity.get(MyPosition);
+	//时间问题
+	getDate();
 }
-/*
+//获取时间
+function getDate() {
+	var myDate = new Date;
+	var year = myDate.getFullYear();//获取当前年
+	var yue = myDate.getMonth()+1;//获取当前月
+	var date = myDate.getDate();//获取当前日
+	$(".oneCar_date").empty();
+	$(".oneCar_date").append("<span>"+year+"/"+yue+"/"+date+"</span>")
+}
+/**
 *解决定位问题
  */
-// function MyPosition(result) {
-// 	$(".oneCar_adress").empty();
-// 	$(".oneCar_adress").append("<span class=\"mui-icon iconfont icon-location\" style=\"font-size: 1rem;\"></span>\n" +
-// 		"\t\t\t\t    <span>"+result.name+"</span>")
-// }
+function MyPosition(result) {
+	$(".oneCar_adress").empty();
+	$(".oneCar_adress").append("<span class=\"mui-icon iconfont icon-location\" style=\"font-size: 1rem;\"></span>\n" +
+		"\t\t\t\t    <span>"+result.name+"</span>")
+}
 /**
  * car
  * 点击跳转页面
  * 向页面传送值，确定其功能
  */
 function recon_num(data) {
-	location.href = "Car/car.html?type="+data;
+	location.href = "Car/car.html?id="+userId+"&&type="+data;
+}
+
+/**
+ * community
+ * 点击跳转到写想法的页面
+ */
+function writePage() {
+	window.location.href = "Community/writeThought.html?id="+userId;
 }
 /**
  * community
@@ -64,33 +92,166 @@ function recon_num(data) {
 // 	$(".commentText").focus();
 // }
 /**
+ * community
+ * 从写页面进入该页面
+ */
+// function Access_page() {
+// 	// $("#car").removeClass("mui-active");
+// 	// $("#oneCar")[0].style.display = "none";
+// 	// $("#community").addClass("mui-active");
+// 	// $("#oneCar-with-community")[0].style.display = "block";
+// 	// location .href = "index.html?id="+userId;
+// }
+
+/**
+ * messages
+ * 获取所有消息
+ */
+function getAllmessage() {
+	$.ajax({
+		url: Url+"/userMessage/"+userId,
+		type:"get",
+		data:{
+			id:userId,
+		},
+		async:false,
+		dataType:"json",
+		success:function(res){
+			console.log(res.data);
+			renderMessage(res.data);
+		},
+		error:function(res){
+			console.log(res);
+		}
+
+	})
+}
+
+/**
+ * message
+ * 渲染所有消息
+ */
+function renderMessage(data){
+	$(".messageBox").empty();
+	$(".messageBox").append("<div class=\"message\">\n" +
+		"\t\t\t\t\t\t\t<p>NULL</p>\n" +
+		"\t\t\t\t\t\t</div>")
+}
+
+/**
  * person
  * 获取用户信息
  * 进入页面立即获取
  */
-// function getInf(id){
-// 	$.ajax({
-// 		url:"",
-// 		type:,
-// 		data:{id:id;},
-// 		async:false,
-// 		dataType:"json",
-// 		success:function(res){
-// 			renderInf(data);
-// 		},
-// 		error:function(res){
-// 			
-// 		}
-// 		
-// 	})
-// },
+function getInf(){
+	$.ajax({
+		url: Url+"/user/"+userId,
+		type:"get",
+		data:{
+			id:userId,
+		},
+		async:false,
+		dataType:"json",
+		success:function(res){
+			renderInf(res.data);
+		},
+		error:function(res){
+			console.log(res);
+		}
+
+	})
+};
 /**
  * person
  * 渲染用户信息
  */
-function renderInf() {
+function renderInf(data) {
+	$("#oneCar-with-person").empty();
+	$("#oneCar-with-person").append("<div class=\"oneCar_informationBox\">\n" +
+		"                        <!--personInf-->\n" +
+		"\t\t\t\t\t\t<div class=\"personInf\">\n" +
+		"\t\t\t\t\t\t\t<div class=\"informationImg\">\n" +
+		"\t\t\t\t\t\t\t\t<div class=\"ID_image\">\n" +
+		"\t\t\t\t\t\t\t\t\t<img src=\"../images/person/people.png\" />\n" +
+		"\t\t\t\t\t\t\t\t</div>\n" +
+		"\t\t\t\t\t\t\t</div>\n" +
+		"\t\t\t\t\t\t\t<div class=\"informationText\">\n" +
+		"\t\t\t\t\t\t\t\t<div class=\"ID_name\">\n" +
+		"\t\t\t\t\t\t\t\t\t<h2>"+data.username+"</h2>\n" +
+		"\t\t\t\t\t\t\t\t</div>\n" +
+		"\t\t\t\t\t\t\t\t<span class=\" mui-icon mui-icon-forward Inf-next\" onclick=\"InfGetout()\"></span>\n" +
+		"\t\t\t\t\t\t\t\t<span class=\" mui-icon iconfont icon-logout\" style=\"font-size: 21px;\" onclick=\"logOut()\"></span>\n" +
+		"\t\t\t\t\t\t\t</div>\n" +
+		"\t\t\t\t\t\t</div>\n" +
+		"                        <!--personal information-->\n" +
+		"\t\t\t\t\t\t<div class=\"oneCar_informationTable\">\n" +
+		"\t\t\t\t\t\t\t<table class=\"inf-table\">\n" +
+		"\t\t\t\t\t\t\t\t<tr>\n" +
+		"\t\t\t\t\t\t\t\t\t<td>userName</td>\n" +
+		"\t\t\t\t\t\t\t\t\t<td>\n" +
+		"\t\t\t\t\t\t\t\t\t\t<input type=\"text\" name=\"userName\" id=\"userName\" value=\""+data.username+"\"\n" +
+		"\t\t\t\t\t\t\t\t\t\t\t   readonly=\"readonly\"/>\n" +
+		"\t\t\t\t\t\t\t\t\t</td>\n" +
+		"\t\t\t\t\t\t\t\t</tr>\n" +
+		"\t\t\t\t\t\t\t\t<tr>\n" +
+		"\t\t\t\t\t\t\t\t\t<td>passWord</td>\n" +
+		"\t\t\t\t\t\t\t\t\t<td>\n" +
+		"\t\t\t\t\t\t\t\t\t\t<input type=\"password\" name=\"passWord\" id=\"passWord\" value=\""+data.password+"\"\n" +
+		"\t\t\t\t\t\t\t\t\t\t\t   readonly=\"readonly\"/>\n" +
+		"\t\t\t\t\t\t\t\t\t</td>\n" +
+		"\t\t\t\t\t\t\t\t</tr>\n" +
+		"\t\t\t\t\t\t\t\t<tr>\n" +
+		"\t\t\t\t\t\t\t\t\t<td>email</td>\n" +
+		"\t\t\t\t\t\t\t\t\t<td>\n" +
+		"\t\t\t\t\t\t\t\t\t\t<input type=\"email\" name=\"email\" id=\"email\" value=\""+data.email+"\"\n" +
+		"\t\t\t\t\t\t\t\t\t\t\t   readonly=\"readonly\"/>\n" +
+		"\t\t\t\t\t\t\t\t\t</td>\n" +
+		"\t\t\t\t\t\t\t\t</tr>\n" +
+		"\t\t\t\t\t\t\t</table>\n" +
+		"\t\t\t\t\t\t\t<button id=\"edit_inf\" onclick=\"editInf()\">Edit</button>\n" +
+		"\t\t\t\t\t\t\t<button id=\"okInf\" onclick=\"okInf()\">OK</button>\n" +
+		"\t\t\t\t\t\t</div>\n" +
+		"                        <!--personalThought-title-->\n" +
+		"\t\t\t\t\t\t<div class=\"personalThought-title\">\n" +
+		"\t\t\t\t\t\t\tmyself thought\n" +
+		"\t\t\t\t\t\t</div>\n" +
+		"                        <!--personalThought-->\n" +
+		"\t\t\t\t\t\t<div class=\"personalThought\">\n" +
+		"\t\t\t\t\t\t\tNULL\n"+
+		"\t\t\t\t\t\t</div>\n" +
+		"\t\t\t\t\t</div>")
 }
 
+/**
+ * person
+ * 获取问答
+ */
+function getThought(id) {
+	$.ajax({
+		url: Url+"/draft/"+userId,
+		type:"get",
+		data:{
+			id:userId,
+		},
+		async:false,
+		dataType:"json",
+		success:function(res){
+			renderThought(res.data);
+		},
+		error:function(res){
+			console.log(res);
+		}
+
+	})
+}
+
+/**
+ * person
+ * 渲染根据ID获取的问答
+ */
+function renderThought(data) {
+
+}
 
 /**
  * person

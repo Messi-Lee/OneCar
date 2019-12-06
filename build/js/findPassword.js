@@ -1,30 +1,61 @@
 /**
+ * 验证表单
+ * */
+function checkForm(){
+	var formData = $("#login-form").serializeJson();
+	// console.log(formData);
+	if(formData.password.trim()==""){
+		alert("用户名不能为空");
+	}else if(formData.password_confirm.trim() ==""){
+		alert("密码不能为空");
+	}else{
+		resetPw(formData);
+	}
+}
+/**
  * 实现重置密码功能
  */
-function resetPw(){
+function resetPw(formData){
 	$.ajax({
-		url: Url +"",
-	    type:"",
-	    data:{
-	        
-	    },
-	    async:true,//true 异步请求（默认）；false 同步请求
-	    dataType:"json",
-	    // beforeSend:function () {
-	    //    XMLHttpRequest.setRequestHeader("token",$.cookie("token")) //在请求之前的操作
-	    // },
-	    success:function (res/*,status,xhr*/) {
-	        //请求成功之后的操作，res是成功后的数据
+		url:Url+"/v1/pub/user",
+		type:"post",
+		data:{
+			password:formData.password,
+			email:formData.email,
+			code: formData.verificationCode
+		},
+		async:true,//true 异步请求（默认）；false 同步请求
+		dataType:"json",
+		success:function (res/*,status,xhr*/) {
+			//请求成功之后的操作，res是成功后的数据
 			console.log(res);
-			console.log("成功");
-			// location.href = "../pages/index.html?id="+res;
-	    },
-	    error:function (res) {
-	        //请求失败之后的操作，res是失败后的数据
-	        console.log(res)
-	    },
+			alert("修改成功，5秒后进入登录页面.....")
+			setTimeout(function () {
+				location.href = "../pages/login.html";
+			},5*1000);
+		},
+		error:function (res) {
+			//请求失败之后的操作，res是失败后的数据
+			console.log(res);
+		}
 	})
 }
+$.fn.serializeJson = function(){
+	var arr = this.serializeArray();
+	var json = {};
+	arr.forEach(function(item){
+		var name = item.name;
+		var value = item.value;
+		if (!json[name]) {
+			json[name] = value;
+		} else if ($.isArray(json[name])) {
+			json[name].push(value);
+		} else {
+			json[name] = [json[name], value];
+		}
+	});
+	return json;
+};
 /**
  * 实时监听两次密码是否一致
  */
@@ -66,7 +97,8 @@ function getSendCode(){
 			url:Url+"/v1/pub/sendCode",
 			type:"post",
 			data:{
-				email:email
+				email:email,
+				type:"0",//0为注册。1为忘记密码
 			},
 			async:true,//true 异步请求（默认）；false 同步请求
 			dataType:"json",
@@ -82,5 +114,4 @@ function getSendCode(){
 			}
 		})
 	}
-
 }

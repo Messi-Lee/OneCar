@@ -1,6 +1,21 @@
+var userId;
 window.onload = function () {
+    userId = location.href.split("=")[1];
+    var name =  location.href.split("?")[1].split("=")[0];
+    if (name != "id"){
+        alert("请先登录!!5秒后进入登录页面...")
+        setTimeout(function () {
+            location.href = "login.html";
+        },5000)
+    }
     chooseTag();
 }
+/**
+ * 返回前一页面
+ */
+function returnCom() {
+    location.href = "../index.html?id="+userId;
+};
 /**
 *将选择发布的图片展示出来
 * 监听，当file-input的value值改变时，运行

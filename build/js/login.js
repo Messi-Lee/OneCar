@@ -49,7 +49,7 @@ function Login(formData){
         success:function (res/*,status,xhr*/) {
             //请求成功之后的操作，res是成功后的数据
 			console.log(res);
-			location.href = "../pages/index.html?account="+formData.account;
+			location.href = "../pages/index.html?id="+res.data.userId;
         },
         error:function (res) {
             //请求失败之后的操作，res是失败后的数据

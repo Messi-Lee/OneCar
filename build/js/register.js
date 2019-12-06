@@ -91,7 +91,8 @@ function getSendCode(){
 			url:Url+"/v1/pub/sendCode",
 			type:"post",
 			data:{
-				email:email
+				email:email,
+				type:"0",//0为注册。1为忘记密码
 			},
 			async:true,//true 异步请求（默认）；false 同步请求
 			dataType:"json",

@@ -30,19 +30,21 @@
 		<div class="oneCar_body">
 			<!-- 头部导航 -->
 			<header class="mui-bar mui-bar-nav oneCar_head">
-				<span class="oneCar_date">Friday</span>
+				<span class="oneCar_date">
+<!--					<span>Friday</span>-->
+				</span>
 				<span class="mui-title oneCar_title" style="left: 6.25rem;right: 6.25rem;color: white;">OneCar</span>
 				<span class="oneCar_adress">
 					<!-- position-img -->
-					<span class="mui-icon iconfont icon-location" style="font-size: 1rem;"></span>
-				    <span>雅安</span>
+<!--					<span class="mui-icon iconfont icon-location" style="font-size: 1rem;"></span>-->
+<!--				    <span>雅安</span>-->
 				</span>
 				
 				
 			</header>
 			<!-- 底部导航 -->
 			<nav class="mui-bar mui-bar-tab onecar_nav">
-				<a class="mui-tab-item mui-active" href="#oneCar">
+				<a class="mui-tab-item mui-active" id="car" href="#oneCar">
 					<span class="mui-icon iconfont icon-car"></span>
 					<span class="mui-tab-label">Car</span>
 				</a>
@@ -50,7 +52,7 @@
 <!--					<span class="mui-icon iconfont icon-find"><span class="mui-badge">9</span></span>-->
 <!--					<span class="mui-tab-label">Find</span>-->
 <!--				</a>-->
-				<a class="mui-tab-item" href="#oneCar-with-community">
+				<a class="mui-tab-item" id="community" href="#oneCar-with-community">
 					<span class="mui-icon iconfont icon-communitygreen"></span>
 					<span class="mui-tab-label">Community</span>
 				</a>
@@ -69,15 +71,15 @@
 				<div id="oneCar" class="mui-control-content mui-active">
 					<div class="oneCar_car">
 						<!-- Vehicle type recognition（车型识别） -->
-						<div class="mui-tab-item OneCar_who" style="background: #FFDF25;" onclick="recon_num(1)">
+						<div class="mui-tab-item OneCar_who" style="background: #FFDF25;" onclick="recon_num(0)">
 							<div>who are you</div>
 						</div>
 						<!-- Vehicle damage identification（车辆损伤识别） -->
-						<div class="mui-tab-item OneCar_where" style="background: #36A9CE;" onclick="recon_num(2)">
+						<div class="mui-tab-item OneCar_where" style="background: #36A9CE;" onclick="recon_num(1)">
 							<div>where are I damaged</div>
 						</div>
 						<!-- Vehicle detection（车辆检测） -->
-						<div class="mui-tab-item OneCar_what" style="background: #D0E17D;" onclick="recon_num(3)">
+						<div class="mui-tab-item OneCar_what" style="background: #D0E17D;" onclick="recon_num(4)">
 							<div>how many is here</div>
 						</div>
 						<!-- Vehicle segmentation（车辆分割） -->
@@ -197,9 +199,9 @@
 					</div>
 
                     <!--问答按钮-->
-					<div class="writeThought">W</div>
+					<div class="writeThought" onclick="writePage()">W</div>
 			    </div>
-				<!-- News -->
+				<!-- Messages -->
 				<div id="oneCar-with-messages" class="mui-control-content">
 					<div class="messageBox">
 						<div class="message">
@@ -418,7 +420,7 @@
 				</div>
 			</div>
 		</div>
-<!--		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=I4gkPPZPbGLGjBAztLx253V4encFR7Wx"></script>-->
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=I4gkPPZPbGLGjBAztLx253V4encFR7Wx"></script>
 		<script src="../build/js/common.js"></script>
 		<script src="../vendors/jquery-3.4.1.js"></script>
 		<script src="../vendors/mui/js/mui.min.js"></script>
