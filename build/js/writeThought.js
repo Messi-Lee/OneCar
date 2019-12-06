@@ -21,13 +21,13 @@ function returnCom() {
 * 监听，当file-input的value值改变时，运行
  */
 var i = -1;
-var fileArr = [];
-var src = [];
+// var fileArr = [];
+var src;
 $("#chooseImg").on("change",function () {
     i++;
     var filePath = $(this).val();
     fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase();
-    src[i] = window.URL.createObjectURL(this.files[0]);
+    src= window.URL.createObjectURL(this.files[0]);
     //转成可以在本地预览的格式
     renderImg();
 });
@@ -35,27 +35,26 @@ $("#chooseImg").on("change",function () {
  * 渲染图片
  */
 function renderImg() {
-    for(var j = 0;j<=i;j++){
-        fileArr[j] = src[j];
-        $(".imgPreviewBox").append("<div class=\"imgPreview\" id=\"imgPreview"+j+"\">\n" +
-            "                        <img src=\"#\" class=\"cropedBigImg\" id=\"cropedBigImg"+j+"\" />\n" +
-            "                        <span class=\"mui-icon mui-icon-close icon-close\" id=\"icon-close"+j+"\" onclick=\"deleteFile("+j+")\"></span>\n" +
-            "                    </div>");
-        $('#imgPreview'+j).css('display','block');
-        $('#cropedBigImg'+j).css('display','block');
-        $('#cropedBigImg'+j).attr('src', src[j]);
-    }
+    $(".imgPreviewBox").append("<div class=\"imgPreview\" id=\"imgPreview"+j+"\">\n" +
+        "                        <img src=\"#\" class=\"cropedBigImg\" id=\"cropedBigImg\" />\n" +
+        "                        <span class=\"mui-icon mui-icon-close icon-close\" id=\"icon-close\" onclick=\"deleteFile()\"></span>\n" +
+        "                    </div>");
+    $('#imgPreview'+j).css('display','block');
+    $('#cropedBigImg'+j).css('display','block');
+    $('#cropedBigImg'+j).attr('src', src);
+    // for(var j = 0;j<=i;j++){
+    //     fileArr[j] = src[j];
+    //
+    // }
 }
 /**
 *删除渲染出来的图片
  */
-function deleteFile(index) {
-    $('#cropedBigImg'+index).attr('src','#');
-    $('#imgPreview'+index).css('display','none');
-    $('#cropedBigImg'+index).css('display','none');
-    fileArr.splice(index,1);
-    i--;
-    renderImg();
+function deleteFile() {
+    $('#cropedBigImg').attr('src','#');
+    $('#imgPreview').css('display','none');
+    $('#cropedBigImg').css('display','none');
+    // renderImg();
 }
 /**
  *弹出
@@ -126,14 +125,23 @@ function deleteTag(index) {
  * 上传发布的问答到后台
  */
 function upThought() {
+    var content = $(".thoughtText").val();
+    var formData = new FormData();
+    formData.append("file",$("#chooseImg").get(0).files[0]);
+    formData.append("labelsId",tagArr);
+    formData.append("content",content);
+    formData.append("imgSrc",src);
+    formData.append("userId",userId);
+    formData.append("viewNum","0");
+    formData.append("likeNum","0");
     $.ajax({
         url:Url+"/draft",
         type:"post",
-        data:{
-
-        },
+        data:formData,
         async:true,//true 异步请求（默认）；false 同步请求
         dataType:"json",
+        processData: false, // 告诉jQuery不要去处理发送的数据
+        contentType: false, // 告诉jQuery不要去设置Content-Type请求头
         // beforeSend:function (XMLHttpRequest) {
         //    XMLHttpRequest.setRequestHeader("token","token") //在请求之前的操作
         // },

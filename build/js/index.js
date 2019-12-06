@@ -14,6 +14,7 @@ window.onload = function(){
 			location.href = "login.html";
 		},5000)
 	}
+	getAllThought();
 	getAllmessage();
 	getInf();
 	//定位问题
@@ -50,6 +51,63 @@ function recon_num(data) {
 
 /**
  * community
+ * 获取所有的想法
+ */
+function getAllThought() {
+	$.ajax({
+		url: Url+"/drafts",
+		type:"get",
+		data:{},
+		async:false,
+		dataType:"json",
+		success:function(res){
+			console.log(res.data);
+			renderThought(res.data);
+		},
+		error:function(res){
+			console.log(res);
+		}
+	})
+}
+
+/**
+ * community
+ * 渲染所有帖子
+ */
+function renderThought(data) {
+	$(".thoughtBox").empty();
+	for (var i = 0;i<data.length;i++){
+		var id = data[i].draftId;
+		$(".thoughtBox").append("<div class=\"mui-content-padded oneCom_padded\" id=\""+id+"\" onclick=\"oneThought("+id+")\">\n" +
+			"\t\t\t\t\t\t\t<div class=\"oneCom_pageTitle\">\n" +
+			"\t\t\t\t\t\t\t\t<div class=\"ID_image oneCom_image\">\n" +
+			"\t\t\t\t\t\t\t\t\t<img src=\"../images/person/people.png\" />\n" +
+			"\t\t\t\t\t\t\t\t</div>\n" +
+			"\t\t\t\t\t\t\t\t<div class=\"ID_name oneCom_name\">\n" +
+			"\t\t\t\t\t\t\t\t\t<div>"+data[i].username+"</div>\n" +
+			"\t\t\t\t\t\t\t\t</div>\n" +
+			"\t\t\t\t\t\t\t</div>\n" +
+			"\t\t\t\t\t\t\t<div class=\"oneCom_pageText\">\n" +
+			"\t\t\t\t\t\t\t\t<p>&nbsp;&nbsp;&nbsp;&nbsp;"+data[i].content+"</p>\n" +
+			"\t\t\t\t\t\t\t</div>\n" +
+			"\t\t\t\t\t\t\t<div class=\"oneCom_pageLike\">\n" +
+			"\t\t\t\t\t\t\t<span class=\"mui-icon iconfont icon-like\" id=\"like"+data[i].draftId+"\" onclick=\"doLike("+id+")\">\n" +
+			"\t\t\t\t\t\t\t\t<span class=\"mui-badge\" id=\"likeNum"+id+"\">"+data[i].likeNum+"</span>\n" +
+			"\t\t\t\t\t\t\t</span>\n" +
+			"\t\t\t\t\t\t\t\t<span class=\"mui-icon iconfont icon-news\" id=\"view"+data[i].draftId+"\" onclick=\"dofocus("+id+")\">\n" +
+			"\t\t\t\t\t\t\t\t<span class=\"mui-badge\" id=\"viewNum"+id+"\" >"+data[i].viewNum+"</span>\n" +
+			"\t\t\t\t\t\t\t</span>\n" +
+			"\t\t\t\t\t\t\t</div>\n" +
+			"\t\t\t\t\t\t\t<div class=\"oneCom_pageComment\">\n" +
+			"\t\t\t\t\t\t\t\t<input type=\"text\" name=\"comment\" class=\"commentText"+id+"\">\n" +
+			"\t\t\t\t\t\t\t\t<button class=\"commentButton\">comment</button>\n" +
+			"\t\t\t\t\t\t\t</div>\n" +
+			"\t\t\t\t\t\t</div>")
+	}
+
+}
+/**
+ * community
  * 点击跳转到写想法的页面
  */
 function writePage() {
@@ -59,38 +117,42 @@ function writePage() {
  * community
  * 实现点赞功能
  */
-// function doLike(id){
-// 	var data = document.getElementById(id);
-// 	if(data.style.color == "red"){
-// 		data.style.color = "#8f8f94";
-// 		likeDone(id,0);
-// 	}else{
-// 		data.style.color = "red";
-// 		likeDone(id,1);
-// 	}
-// }
+function doLike(id){
+	var color = document.getElementById("like"+id);
+	console.log(color);
+	if(color.style.color == "red"){
+		color.style.color = "#8f8f94";
+		// likeDone(id,0);
+	}else{
+		color.style.color = "red";
+		likeDone(id);
+	}
+}
 
-// function likeDone(id,status){
-// 	$.ajax({
-// 		url:"",
-// 		type:,
-// 		data:{id:id;},
-// 		async:false,
-// 		dataType:"json",
-// 		success:function(res){
-// 		},
-// 		error:function(res){
-// 			
-// 		}		
-// 	})
-// }
+function likeDone(id,status){
+	$.ajax({
+		url:Url+"/draft/like/"+id,
+		type:"get",
+		data:{
+			id:id,
+			},
+		async:false,
+		dataType:"json",
+		success:function(res){
+			console.log("成功")
+		},
+		error:function(res){
+			console,logOut("失败")
+		}
+	})
+}
 /**
  * community
  * 点击评论图标，聚焦于input框
  */
-// function dofocus(){
-// 	$(".commentText").focus();
-// }
+function dofocus(id){
+	$(".commentText"+id).focus();
+}
 /**
  * community
  * 从写页面进入该页面
@@ -102,7 +164,13 @@ function writePage() {
 // 	// $("#oneCar-with-community")[0].style.display = "block";
 // 	// location .href = "index.html?id="+userId;
 // }
-
+/**
+ * community
+ * 跳入指定帖子
+ */
+function oneThought(id){
+	location.href = "Community/display.html?id="+userId+"&&draftId="+id;
+}
 /**
  * messages
  * 获取所有消息
@@ -236,7 +304,7 @@ function getThought(id) {
 		async:false,
 		dataType:"json",
 		success:function(res){
-			renderThought(res.data);
+			renderThoughtId(res.data);
 		},
 		error:function(res){
 			console.log(res);
@@ -249,7 +317,7 @@ function getThought(id) {
  * person
  * 渲染根据ID获取的问答
  */
-function renderThought(data) {
+function renderThoughtId(data) {
 
 }
 
@@ -280,13 +348,15 @@ function editInf(){
  * 编辑功能实现
  * ok按钮实现数据上传
  */
+var usern = document.getElementById("userName");
+var passw = document.getElementById("passWord");
+var e_mail = document.getElementById("email");
+var userName = usern.value;
+var passWord = passw.value;
+var emailV = passw.value;
 function okInf(){
-	var usern = document.getElementById("userName");
-	var passw = document.getElementById("passWord");
-	var e_mail = document.getElementById("email");
 	var okInf =  document.getElementById("okInf");
-	console.log(usern.value);
-	// upInf();
+	console.log(userName);
 	usern.readonly = "readonly";
 	usern.style.background = "rgba(247, 247, 247, 0)";
 	usern.style.border = "rgba(247, 247, 247, 0)";
@@ -297,27 +367,35 @@ function okInf(){
 	e_mail.style.background = "rgba(247, 247, 247, 0)";
 	e_mail.style.border = "rgba(247, 247, 247, 0)";
 	okInf.style.display = "none";
+	upInf();
 }
-// function upInf(){
-// 	$.ajax({
-// 		url:"",
-// 		type:"get",
-// 		data:{
-// 			username:usern.value,
-// 			Password:passw,value,
-// 			email:e_mail.value
-// 		},
-// 		async:false,
-// 		dataType:"json",
-// 		success:function (){
-// 			
-// 		},
-// 		error:function (){
-// 			
-// 		}
-// 		
-// 	})
-// }
+
+/**
+ * person
+ * 修改
+ * 修改个人信息
+ */
+function upInf(){
+	$.ajax({
+		url:Url+"/v1/unpub/user/"+userId,
+		type:"put",
+		data:{
+			id:userId,
+			username:userName,
+			Password:passWord,
+			email:emailV,
+		},
+		async:false,
+		dataType:"json",
+		success:function (res){
+			alert("修改成功");
+		},
+		error:function (res){
+			console.log(res);
+		}
+
+	})
+}
 /*
 *person
 * 个人信息展示弹出

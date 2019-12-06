@@ -77,7 +77,7 @@ function renderCarPage(num) {
             "            <!--图片上传并展示-->\n" +
             "            <div class=\"imgUpBox\">\n" +
             "                <div class=\"conshowed\"></div>\n" +
-            "                <img src=\"../../images/car/QQ截图20191204101213.jpg\" class=\"imgUp\" id=\"imgUp\">\n" +
+            "                <img src=\"../../images/car/car2.jpg\" class=\"imgUp\" id=\"imgUp\">\n" +
             "            </div>\n" +
             "             <!--返回信息展示-->\n" +
             "            <div class=\"displayInf\">\n" +
@@ -112,7 +112,7 @@ function renderCarPage(num) {
             "            <!--图片上传并展示-->\n" +
             "            <div class=\"imgUpBox\">\n" +
             "                <div class=\"conshowed\"></div>\n" +
-            "                <img src=\"../../images/car/QQ截图20191204114109.jpg\" class=\"imgUp\" id=\"imgUp\">\n" +
+            "                <img src=\"../../images/car/car3.jpg\" class=\"imgUp\" id=\"imgUp\">\n" +
             "            </div>\n" +
             "             <!--返回信息展示-->\n" +
             "            <div class=\"displayInf\">\n" +
