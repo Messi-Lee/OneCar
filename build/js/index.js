@@ -2,27 +2,22 @@
  * 页面自动执行的函数
  */
 var userId;
+var self
 // var divActive;
-window.onload = function(){
-	// 获取account
-	//  split()
-	userId = location.href.split("=")[1];
-	var name =  location.href.split("?")[1].split("=")[0];
-	if (name != "id"){
-		alert("请先登录!!5秒后进入登录页面...")
-		setTimeout(function () {
-			location.href = "login.html";
-		},5000)
-	}
-	getAllThought();
-	getAllmessage();
-	getInf();
+mui.ready(function(){
+	// 获取用户ID
+	self = plus.webview.currentWebview();
+	userId = self.userId;
+	console.log(self);
+	getAllThought();//获得所有帖子
+	getAllmessage();//获取所有消息
+	getInf();//获取所有用户信息
 	//定位问题
 	var myCity = new BMap.LocalCity();
 	myCity.get(MyPosition);
 	//时间问题
 	getDate();
-}
+})
 //获取时间
 function getDate() {
 	var myDate = new Date;
