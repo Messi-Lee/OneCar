@@ -1,23 +1,31 @@
+mui.init();
 /**
  * 页面自动执行的函数
  */
 var userId;
-var self
 // var divActive;
-mui.ready(function(){
-	// 获取用户ID
-	self = plus.webview.currentWebview();
-	userId = self.userId;
-	console.log(self);
-	getAllThought();//获得所有帖子
-	getAllmessage();//获取所有消息
-	getInf();//获取所有用户信息
+window.onload = function () {
+	userId = location.href.split("=")[1];
+	var name =  location.href.split("?")[1].split("=")[0];
+	if (name != "id"){
+		alert("请先登录!!5秒后进入登录页面...")
+		setTimeout(function () {
+			location.href = "login.html";
+		},5000)
+	}
 	//定位问题
 	var myCity = new BMap.LocalCity();
 	myCity.get(MyPosition);
 	//时间问题
 	getDate();
-})
+	getAllThought();//获得所有帖子
+	getAllmessage();//获取所有消息
+	getInf();//获取所有用户信息
+	getThought(userId);
+}
+// mui.ready(function(){
+// 	
+// })
 //获取时间
 function getDate() {
 	var myDate = new Date;
@@ -49,7 +57,7 @@ function recon_num(data) {
  * 获取所有的想法
  */
 function getAllThought() {
-	$.ajax({
+	mui.ajax({
 		url: Url+"/drafts",
 		type:"get",
 		data:{},
@@ -73,7 +81,7 @@ function renderThought(data) {
 	$(".thoughtBox").empty();
 	for (var i = 0;i<data.length;i++){
 		var id = data[i].draftId;
-		$(".thoughtBox").append("<div class=\"mui-content-padded oneCom_padded\" id=\""+id+"\" onclick=\"oneThought("+id+")\">\n" +
+		$(".thoughtBox").append("<div class=\"mui-content-padded oneCom_padded\" id=\""+id+"\" >\n" +
 			"\t\t\t\t\t\t\t<div class=\"oneCom_pageTitle\">\n" +
 			"\t\t\t\t\t\t\t\t<div class=\"ID_image oneCom_image\">\n" +
 			"\t\t\t\t\t\t\t\t\t<img src=\"../images/person/people.png\" />\n" +
@@ -82,14 +90,14 @@ function renderThought(data) {
 			"\t\t\t\t\t\t\t\t\t<div>"+data[i].username+"</div>\n" +
 			"\t\t\t\t\t\t\t\t</div>\n" +
 			"\t\t\t\t\t\t\t</div>\n" +
-			"\t\t\t\t\t\t\t<div class=\"oneCom_pageText\">\n" +
-			"\t\t\t\t\t\t\t\t<p>&nbsp;&nbsp;&nbsp;&nbsp;"+data[i].content+"</p>\n" +
+			"\t\t\t\t\t\t\t<div class=\"oneCom_pageText\" onclick=\"oneThought('"+id+"')\">\n" +
+			"\t\t\t\t\t\t\t\t<p>&nbsp;&nbsp;&nbsp;&nbsp;"+data[i].content.substr(0,40)+'...'+"</p>\n" +
 			"\t\t\t\t\t\t\t</div>\n" +
 			"\t\t\t\t\t\t\t<div class=\"oneCom_pageLike\">\n" +
-			"\t\t\t\t\t\t\t<span class=\"mui-icon iconfont icon-like\" id=\"like"+data[i].draftId+"\" onclick=\"doLike("+id+")\">\n" +
+			"\t\t\t\t\t\t\t<span class=\"mui-icon iconfont icon-like\" id=\"like"+data[i].draftId+"\" onclick=\"doLike('"+id+"')\">\n" +
 			"\t\t\t\t\t\t\t\t<span class=\"mui-badge\" id=\"likeNum"+id+"\">"+data[i].likeNum+"</span>\n" +
 			"\t\t\t\t\t\t\t</span>\n" +
-			"\t\t\t\t\t\t\t\t<span class=\"mui-icon iconfont icon-news\" id=\"view"+data[i].draftId+"\" onclick=\"dofocus("+id+")\">\n" +
+			"\t\t\t\t\t\t\t\t<span class=\"mui-icon iconfont icon-news\" id=\"view"+data[i].draftId+"\" onclick=\"dofocus('"+id+"')\">\n" +
 			"\t\t\t\t\t\t\t\t<span class=\"mui-badge\" id=\"viewNum"+id+"\" >"+data[i].viewNum+"</span>\n" +
 			"\t\t\t\t\t\t\t</span>\n" +
 			"\t\t\t\t\t\t\t</div>\n" +
@@ -124,8 +132,8 @@ function doLike(id){
 	}
 }
 
-function likeDone(id,status){
-	$.ajax({
+function likeDone(id){
+	mui.ajax({
 		url:Url+"/draft/like/"+id,
 		type:"get",
 		data:{
@@ -134,10 +142,11 @@ function likeDone(id,status){
 		async:false,
 		dataType:"json",
 		success:function(res){
-			console.log("成功")
+			console.log("成功");
+			$("#likeNum"+id).text(parseInt($("#likeNum"+id).text())+1);
 		},
 		error:function(res){
-			console,logOut("失败")
+			console.log("失败");
 		}
 	})
 }
@@ -171,7 +180,7 @@ function oneThought(id){
  * 获取所有消息
  */
 function getAllmessage() {
-	$.ajax({
+	mui.ajax({
 		url: Url+"/userMessage/"+userId,
 		type:"get",
 		data:{
@@ -182,6 +191,7 @@ function getAllmessage() {
 		success:function(res){
 			console.log(res.data);
 			renderMessage(res.data);
+			$(".mui-badge").text(res.data.length);
 		},
 		error:function(res){
 			console.log(res);
@@ -196,9 +206,13 @@ function getAllmessage() {
  */
 function renderMessage(data){
 	$(".messageBox").empty();
-	$(".messageBox").append("<div class=\"message\">\n" +
-		"\t\t\t\t\t\t\t<p>NULL</p>\n" +
-		"\t\t\t\t\t\t</div>")
+	for (let i = 0;i<data.length;i++){
+		$(".messageBox").append("<div class=\"message\">\n" +
+			"\t\t\t\t\t\t\t<p>"+data[i].messageContent+"</p>\n" +
+			"\t\t\t\t\t\t\t<span>"+data[i].createTime.substr(0,19)+"</span>\n" +
+			"\t\t\t\t\t\t</div>")
+	}
+
 }
 
 /**
@@ -207,7 +221,7 @@ function renderMessage(data){
  * 进入页面立即获取
  */
 function getInf(){
-	$.ajax({
+	mui.ajax({
 		url: Url+"/user/"+userId,
 		type:"get",
 		data:{
@@ -217,6 +231,7 @@ function getInf(){
 		dataType:"json",
 		success:function(res){
 			renderInf(res.data);
+			localStorage["user_name"] = res.data.username;
 		},
 		error:function(res){
 			console.log(res);
@@ -272,7 +287,7 @@ function renderInf(data) {
 		"\t\t\t\t\t\t\t\t</tr>\n" +
 		"\t\t\t\t\t\t\t</table>\n" +
 		"\t\t\t\t\t\t\t<button id=\"edit_inf\" onclick=\"editInf()\">Edit</button>\n" +
-		"\t\t\t\t\t\t\t<button id=\"okInf\" onclick=\"okInf()\">OK</button>\n" +
+		"\t\t\t\t\t\t\t<button id=\"ok_Inf\" onclick=\"okInf()\">OK</button>\n" +
 		"\t\t\t\t\t\t</div>\n" +
 		"                        <!--personalThought-title-->\n" +
 		"\t\t\t\t\t\t<div class=\"personalThought-title\">\n" +
@@ -280,7 +295,6 @@ function renderInf(data) {
 		"\t\t\t\t\t\t</div>\n" +
 		"                        <!--personalThought-->\n" +
 		"\t\t\t\t\t\t<div class=\"personalThought\">\n" +
-		"\t\t\t\t\t\t\tNULL\n"+
 		"\t\t\t\t\t\t</div>\n" +
 		"\t\t\t\t\t</div>")
 }
@@ -290,11 +304,11 @@ function renderInf(data) {
  * 获取问答
  */
 function getThought(id) {
-	$.ajax({
-		url: Url+"/draft/"+userId,
+	mui.ajax({
+		url: Url+"/userDrafts/"+userId,
 		type:"get",
 		data:{
-			id:userId,
+			userId:id,
 		},
 		async:false,
 		dataType:"json",
@@ -313,7 +327,40 @@ function getThought(id) {
  * 渲染根据ID获取的问答
  */
 function renderThoughtId(data) {
+	if (data == ""){
+		$("personalThought").html("NULL!!");
+	}else{
+		$("personalThought").empty();
+		for (let i = 0;i<data.length;i++){
+			let id = data[i].draftId;
+			$(".personalThought").append("<div class=\"mui-content-padded oneCom_padded\" id=\""+id+"\" >\n" +
+				"\t\t\t\t\t\t\t<div class=\"oneCom_pageTitle\">\n" +
+				"\t\t\t\t\t\t\t\t<div class=\"ID_image oneCom_image\">\n" +
+				"\t\t\t\t\t\t\t\t\t<img src=\"../images/person/people.png\" />\n" +
+				"\t\t\t\t\t\t\t\t</div>\n" +
+				"\t\t\t\t\t\t\t\t<div class=\"ID_name oneCom_name\">\n" +
+				"\t\t\t\t\t\t\t\t\t<div>"+data[i].username+"</div>\n" +
+				"\t\t\t\t\t\t\t\t</div>\n" +
+				"\t\t\t\t\t\t\t</div>\n" +
+				"\t\t\t\t\t\t\t<div class=\"oneCom_pageText\" onclick=\"oneThought('"+id+"')\">\n" +
+				"\t\t\t\t\t\t\t\t<p>&nbsp;&nbsp;&nbsp;&nbsp;"+data[i].content.substr(0,40)+'...'+"</p>\n" +
+				"\t\t\t\t\t\t\t</div>\n" +
+				"\t\t\t\t\t\t\t<div class=\"oneCom_pageLike\">\n" +
+				"\t\t\t\t\t\t\t<span class=\"mui-icon iconfont icon-like\" id=\"like"+data[i].draftId+"\" onclick=\"doLike('"+id+"')\">\n" +
+				"\t\t\t\t\t\t\t\t<span class=\"mui-badge\" id=\"likeNum"+id+"\">"+data[i].likeNum+"</span>\n" +
+				"\t\t\t\t\t\t\t</span>\n" +
+				"\t\t\t\t\t\t\t\t<span class=\"mui-icon iconfont icon-news\" id=\"view"+data[i].draftId+"\" onclick=\"dofocus('"+id+"')\">\n" +
+				"\t\t\t\t\t\t\t\t<span class=\"mui-badge\" id=\"viewNum"+id+"\" >"+data[i].viewNum+"</span>\n" +
+				"\t\t\t\t\t\t\t</span>\n" +
+				"\t\t\t\t\t\t\t</div>\n" +
+				"\t\t\t\t\t\t\t<div class=\"oneCom_pageComment\">\n" +
+				"\t\t\t\t\t\t\t\t<input type=\"text\" name=\"comment\" class=\"commentText"+id+"\">\n" +
+				"\t\t\t\t\t\t\t\t<button class=\"commentButton\">comment</button>\n" +
+				"\t\t\t\t\t\t\t</div>\n" +
+				"\t\t\t\t\t\t</div>")
+		}
 
+	}
 }
 
 /**
@@ -321,11 +368,13 @@ function renderThoughtId(data) {
  * 编辑功能实现
  * 编辑按钮实现编辑
  */
+
+
 function editInf(){
 	var usern = document.getElementById("userName");
 	var passw = document.getElementById("passWord");
 	var e_mail = document.getElementById("email");
-	var okInf =  document.getElementById("okInf");
+	var ok_Inf =  document.getElementById("ok_Inf");
 	usern.removeAttribute("readonly");
 	usern.style.background = "#fff";
 	usern.style.border = "1px solid rgba(0,0,0,.2)";
@@ -336,21 +385,18 @@ function editInf(){
 	e_mail.removeAttribute("readonly");
 	e_mail.style.background = "#fff";
 	e_mail.style.border = "1px solid rgba(0,0,0,.2)";
-	okInf.style.display = "block";
+	ok_Inf.style.display = "block";
 }
 /**
  * person
  * 编辑功能实现
  * ok按钮实现数据上传
  */
-var usern = document.getElementById("userName");
-var passw = document.getElementById("passWord");
-var e_mail = document.getElementById("email");
-var userName = usern.value;
-var passWord = passw.value;
-var emailV = passw.value;
 function okInf(){
-	var okInf =  document.getElementById("okInf");
+	var usern = document.getElementById("userName");
+	var passw = document.getElementById("passWord");
+	var e_mail = document.getElementById("email");
+	var ok_Inf =  document.getElementById("ok_Inf");
 	console.log(userName);
 	usern.readonly = "readonly";
 	usern.style.background = "rgba(247, 247, 247, 0)";
@@ -361,8 +407,16 @@ function okInf(){
 	e_mail.readonly = "readonly";
 	e_mail.style.background = "rgba(247, 247, 247, 0)";
 	e_mail.style.border = "rgba(247, 247, 247, 0)";
-	okInf.style.display = "none";
+	ok_Inf.style.display = "none";
+	var formData = new FormData;
+	localStorage["username"]=usern.value;
+	localStorage["user_password"]=passw.value;
+	localStorage["user_email"]=e_mail.value;
 	upInf();
+	getInf();
+	localStorage.removeItem("username");
+	localStorage.removeItem("user_password");
+	localStorage.removeItem("user_email");
 }
 
 /**
@@ -376,9 +430,9 @@ function upInf(){
 		type:"put",
 		data:{
 			id:userId,
-			username:userName,
-			Password:passWord,
-			email:emailV,
+			username:JSON.stringify(localStorage["username"]).replaceAll("\"",""),
+			password:JSON.stringify(localStorage["user_password"]).replaceAll("\"",""),
+			email:JSON.stringify(localStorage["user_email"]).replaceAll("\"",""),
 		},
 		async:false,
 		dataType:"json",
@@ -458,5 +512,32 @@ function logOut(){
 		localStorage.removeItem("local-account");
 		localStorage.removeItem("local-password");
 	}
-	location.href = "login.html";
+	location.href = "../pages/login.html"
+	// mui.openWindow({
+	// 	url:"../pages/login.html",
+	// 	// id: ,
+	// 	styles:{
+	// 		top:0,//新页面顶部位置
+	// 		bottom:0,//新页面底部位置
+	// 	},
+	// 	// extras:{
+	// 	// 	userId:res.data.userId,
+	// 	// },
+	// 	createNew:false,//是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+	// 	show:{
+	// 		autoShow:true,//页面loaded事件发生后自动显示，默认为true
+	// 		aniShow:"slide-in-right",//页面显示动画，默认为”slide-in-right“；
+	// 		// duration:animationTime//页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+	// 	},
+	// 	waiting:{
+	// 		autoShow:true,//自动显示等待框，默认为true
+	// 		title:'正在加载...',//等待对话框上显示的提示内容
+	// 		options:{
+	// 			// width:waiting-dialog-widht,//等待框背景区域宽度，默认根据内容自动计算合适宽度
+	// 			// height:waiting-dialog-height,//等待框背景区域高度，默认根据内容自动计算合适高度
+	// 			// ......
+	// 		}
+	// 	}
+	// });
+	
 }

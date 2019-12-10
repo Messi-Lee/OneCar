@@ -35,13 +35,13 @@ $("#chooseImg").on("change",function () {
  * 渲染图片
  */
 function renderImg() {
-    $(".imgPreviewBox").append("<div class=\"imgPreview\" id=\"imgPreview"+j+"\">\n" +
+    $(".imgPreviewBox").append("<div class=\"imgPreview\" id=\"imgPreview\">\n" +
         "                        <img src=\"#\" class=\"cropedBigImg\" id=\"cropedBigImg\" />\n" +
         "                        <span class=\"mui-icon mui-icon-close icon-close\" id=\"icon-close\" onclick=\"deleteFile()\"></span>\n" +
         "                    </div>");
-    $('#imgPreview'+j).css('display','block');
-    $('#cropedBigImg'+j).css('display','block');
-    $('#cropedBigImg'+j).attr('src', src);
+    $('#imgPreview').css('display','block');
+    $('#cropedBigImg').css('display','block');
+    $('#cropedBigImg').attr('src', src);
     // for(var j = 0;j<=i;j++){
     //     fileArr[j] = src[j];
     //
@@ -102,6 +102,7 @@ function chooseTag(){
             }
         })
     }
+
 }
 /**
  *将获取到的标签渲染到页面中
@@ -127,6 +128,7 @@ function deleteTag(index) {
 function upThought() {
     var content = $(".thoughtText").val();
     var formData = new FormData();
+    console.log(tagArr)
     formData.append("file",$("#chooseImg").get(0).files[0]);
     formData.append("labelsId",tagArr);
     formData.append("content",content);

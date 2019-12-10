@@ -122,7 +122,7 @@ body {
 	width: 2.1875rem;
 }
 .ID_name{
-	width: 80%;
+	width: 70%;
     float: left;
 	margin-top: 5px;
 	margin-left: 11px;
@@ -191,14 +191,21 @@ body {
 	height: 100%;
 }
 .message{
-	height: 40px;
+	height: 45px;
 	line-height: 40px;
 	border-bottom: 0.4px rgba(0,0,0,.4) solid;
 	box-shadow: 0 1px 4px #ccc;
 }
 .message p{
-	font-size: 18px;
+	font-size: 16px;
 	color: white;
+	height: 21px;
+	width: 53%;
+	float: left;
+}
+.message span{
+	float: right;
+	margin-right: 12px;
 }
 /* person */
 #oneCar-with-person{

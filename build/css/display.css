@@ -44,3 +44,101 @@ body {
 .car {
     height: 6.25rem;
 }
+/* 页面主体框架 */
+.oneCar_body {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    top: 50px;
+}
+
+/* 头部导航栏 */
+.oneCar_head {
+    padding: 0 1.875rem;
+    color: white;
+    background-color: #3bf9cd !important;
+    line-height: 2.75rem;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);;
+}
+.oneCom_padded{
+    height: auto;
+    background-color: rgba(247, 247, 247, 0.9) !important;
+    color: #2c2c2c;
+    padding: 0.75rem;
+}
+.oneCom_pageTitle{
+    height: 35px;
+}
+.ID_image{
+    width: 20%;
+    float: left;
+}
+.ID_image img{
+    border-radius: 50%;
+    border: 1px black solid;
+    width: 40px;
+}
+.oneCom_image{
+    width: 11%;
+}
+.oneCom_image img{
+    width: 2.1875rem;
+}
+.ID_name{
+    width: 22%;
+    float: left;
+    margin-top: 5px;
+    margin-left: 11px;
+}
+.oneCom_pageText {
+}
+.oneCom_pageLike{
+    text-align: right;
+}
+.oneCom_pageLike span{
+    font-size: 1.25rem;
+    margin-left: 0.625rem;
+    color: #8f8f94;
+}
+.mui-icon .mui-badge{
+    left: 0;
+    position: relative;
+    top: -13px;
+}
+.oneCom_pageComment{
+    height: 22%;
+    margin-top: 5px;
+}
+.oneCom_pageComment input{
+    height: 1.875rem;
+    width: 70%;
+}
+.oneCom_pageComment button{
+    height: 30px;
+    line-height: 8px;
+    width: 27%;
+    background-color: #e3ed88;
+}
+.Tag{
+    display: inline;
+    position: relative;
+    border: 1px white solid;
+    margin-left: 12px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.4);
+}
+.commentBox{
+    width: 95%;
+    left: 2%;
+    position: relative;
+}
+.userComment{
+    height: 70px;
+    color: black;
+}
+.replyTime{
+    line-height: 29px;
+    float: right;
+}
+.oneCom_pageText img{
+    height: 185px;
+}

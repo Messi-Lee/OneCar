@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title>展示问答</title>
     <script src="../../vendors/mui/js/mui.min.js"></script>
+    <link rel="stylesheet" href="../../fonts/iconfont.css">
     <link href="../../vendors/mui/css/mui.min.css" rel="stylesheet"/>
     <link href="../../build/css/display.css" rel="stylesheet"/>
     <script type="text/javascript" charset="utf-8">
@@ -32,9 +33,7 @@
 <div class="oneCar_body">
     <!-- 头部导航 -->
     <header class="mui-bar mui-bar-nav oneCar_head">
-        <span class="mui-icon mui-icon-undo" onclick="function Reback() {
-                  location.href = '../index.html';
-                  };Reback()"></span>
+        <span class="mui-icon mui-icon-undo" onclick="Reback()"></span>
         <span class="mui-title oneCar_title" style="left: 6.25rem;right: 6.25rem;color: white;">comment</span>
     </header>
     <div class="thoughtBox">
@@ -42,7 +41,7 @@
             <div class="mui-content-padded oneCom_padded">
                 <div class="oneCom_pageTitle">
                     <div class="ID_image oneCom_image">
-                        <img src="../images/person/people.png" />
+                        <img src="../../images/person/people.png" />
                     </div>
                     <div class="ID_name oneCom_name">
                         <div>Missi</div>
@@ -67,7 +66,21 @@
             </div>
         </div>
     </div>
+    <div class="commentBox">
+        <div class="userComment">
+            <div class="oneCom_pageTitle">
+                <div class="ID_image oneCom_image">
+                    <img src="../../images/person/people.png" />
+                </div>
+                <div class="ID_name oneCom_name">
+                    <div>Missi</div>
+                </div>
+            </div>
+            <div class="commentText"></div>
+        </div>
+    </div>
 </div>
+<script src="../../build/js/common.js"></script>
 <script src="../../vendors/jquery-3.4.1.js"></script>
 <script src="../../build/js/display.js"></script>
 </body>
